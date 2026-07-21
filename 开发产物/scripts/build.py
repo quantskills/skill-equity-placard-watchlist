@@ -142,7 +142,7 @@ def to_standard_output(events: pd.DataFrame, channel_events: pd.DataFrame,
                      "delta_pct": d.get("delta_pct"), "as_of_date": d.get("as_of_date"),
                      "plain_text": (f"{d.get('holder_name')} 持 {d.get('symbol')} 已达 {d.get('pct')}%，"
                                     f"距 {d.get('next_line'):.0f}% 线仅 {d.get('gap_to_line')} 个百分点，"
-                                    "再买一点就要举手，提前盯住。"),
+                                    "再增持少量即触发披露义务，建议提前跟踪。"),
                      "result_json": json.dumps(d, ensure_ascii=False, default=str)})
 
     summ = P.summarize(events, watch)
@@ -154,7 +154,8 @@ def to_standard_output(events: pd.DataFrame, channel_events: pd.DataFrame,
                                 f"减持跌破 {summ['n_exit']} 起，涉及 {summ['n_symbols']} 只个股；"
                                 f"其中战略倾向 {summ['n_strategic']} 起、越过 30% 控制权线 "
                                 f"{summ['n_control_bid']} 起；另有 {summ['n_approaching']} 个逼近举牌线的观察对象、"
-                                f"{summ['n_channel_events']} 起通道账户越线（不算举牌）。"),
+                                f"{summ['n_channel_events']} 起通道账户越线（不算举牌）。"
+                                "口径：报告期快照重建，非实时播报。"),
                  "result_json": json.dumps(summ, ensure_ascii=False, default=str)})
 
     out = pd.DataFrame(rows, columns=_RESULT_COLS)

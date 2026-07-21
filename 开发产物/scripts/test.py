@@ -384,8 +384,12 @@ def test_plain_text_dynamic():
     assert "22.0%" in texts["A.SZ"] and "战略" in texts["A.SZ"]
     assert "5.2%" in texts["B.SZ"] and "首次举牌" in texts["B.SZ"]
     assert texts["A.SZ"] != texts["B.SZ"], "两条研判不得雷同"
-    assert all("非实时举牌播报" in t and "不构成投资建议" in t for t in texts.values())
-    print("✅ test_plain_text_dynamic（读数插值 + 边界声明齐全）")
+    # 边界声明只应在汇总行出现一次，不再逐条重复（1781 条事件塞 1781 份副本是噪声）
+    assert not any("不构成投资建议" in t for t in texts.values()), "逐条事件不应再重复免责"
+    out = B.run({"panel": panel})
+    summ = out[out.result_type == "placard_summary"].iloc[0].plain_text
+    assert "非实时播报" in summ, "边界声明须保留在汇总行"
+    print("✅ test_plain_text_dynamic（读数插值；边界只在汇总行出现一次）")
 
 
 def test_real_data_optional():

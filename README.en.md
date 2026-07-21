@@ -2,11 +2,11 @@
 
 [简体中文](README.md) | **English**
 
-> When someone buys past **5%** of a listed company, Chinese securities law forces them to raise their hand
-> in public — that is a **placard** (举牌).
+> When a single shareholder reaches **5%** of a listed company, Chinese securities law requires public
+> disclosure of their identity and holding — a **placard** (举牌).
 > This tool reconstructs those hand-raises from top-shareholder snapshots and answers
 > **who is buying in, how many rungs up they have climbed, and whether they want a trade or a board seat**.
-> **Report-period snapshot basis, not a real-time placard feed; not investment advice.**
+> **Basis: report-period snapshots, not a real-time placard feed.**
 
 > Project status: QUANTSKILLS **Community Project** — not reviewed, certified or endorsed by QuantSkills. Task ID `#17`.
 
@@ -34,10 +34,10 @@ This skill tracks each shareholder's ownership time series and detects crossings
 
 | Event | Meaning | In plain terms |
 |---|---|---|
-| 🟢 **First placard** | crosses up through 5% | a new player has arrived and must identify themselves |
-| 🔵 **Raising** | crosses up through 10 / 15 / 20 / 25 / 30% | the higher the rungs, the more serious; 30% is the control watershed |
+| 🟢 **First placard** | crosses up through 5% | a significant new shareholder has arrived and must disclose |
+| 🔵 **Raising** | crosses up through 10 / 15 / 20 / 25 / 30% | higher rungs point to control ambitions; 30% is the watershed |
 | 🔴 **Exit** | drops below any threshold | a previous placard position is unwinding |
-| 🟡 **Approaching** | at 4.x%, within 1pt of a line | one more purchase and they must file — watch them now |
+| 🟡 **Approaching** | at 4.x%, within 1pt of a line | a small further purchase triggers disclosure — track early |
 
 Every event carries an **intent leaning** (financial vs strategic), the **six-month short-swing-profit lock-up**,
 and a plain-language verdict.
@@ -86,7 +86,7 @@ Placards are measured on **issued shares**, so only `total` rows may be used.
 
 ### ② Passive dilution: an issuance is not a sale
 
-When a company issues new shares the pie grows — **nobody sold, yet everyone's percentage falls.** Live examples:
+When a company issues new shares the total share count rises — **nobody sold, yet everyone's percentage falls.** Live examples:
 
 ```
 301629.SZ @20250324   seven holders "drop" simultaneously
