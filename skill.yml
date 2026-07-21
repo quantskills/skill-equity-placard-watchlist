@@ -1,0 +1,58 @@
+# QuantSkills project manifest — skill-equity-placard-watchlist (#17)
+metadata:
+  organization: QuantSkills
+  organization_url: https://github.com/quantskills
+  repository: skill-equity-placard-watchlist
+  repository_url: https://github.com/quantskills/skill-equity-placard-watchlist
+  project_type: skill
+  collection: corporate-action
+  license: GPL-3.0-only
+  status: community-project          # 未经官方审核/认证
+  maintainer: ZLHad
+
+name: 举牌行为监控 (Equity Placard Watchlist)
+summary: >-
+  侦测 A 股股东持股比例上穿 5%/10%/15%/20%/25%/30% 法定披露梯度的权益变动事件，
+  输出举牌梯度、意图倾向（财务 vs 战略）、6 个月短线交易归入权锁定期与逼近举牌线观察名单。
+  剔除通道账户（北向托管/回购专户）与股本稀释造成的假举牌。
+  报告期快照口径、非实时播报，非投资建议。
+
+declaration: SKILL.md
+detailed_skill: 开发产物/SKILL.md
+readme:
+  zh: README.md
+  en: README.en.md
+
+data_source: PandaData (panda_data>=0.0.9) — get_top_holders 十大股东快照
+dependencies: [panda_data>=0.0.9, pandas, pyarrow]
+
+entrypoints:
+  cli: python 开发产物/scripts/build.py --mode scan
+  watchlist: python 开发产物/scripts/build.py --symbols
+  run: 开发产物/scripts/build.py:run
+  validate_input: 开发产物/scripts/build.py:validate_input
+  maintain_daily: 开发产物/scripts/build.py:maintain_daily
+  backfill: 开发产物/scripts/build.py:backfill
+  detect_events: 开发产物/scripts/placard.py:detect_events
+  infer_share_change: 开发产物/scripts/placard.py:infer_share_change
+  render_html: 开发产物/scripts/render.py:render_html
+  test: python 开发产物/scripts/test.py
+
+runtimes:
+  claude-code: { declaration: 开发产物/SKILL.md, invoke: cli }
+  codex:       { declaration: SKILL.md, invoke: cli }
+  cursor:      { declaration: SKILL.md, invoke: cli }
+
+known_limitations:
+  - 报告期快照口径，报告期之间发生并回撤的举牌看不到，非实时播报
+  - 一致行动人无法合并（数据源无该字段），多个关联方各持 4% 合计超 5% 检测不到
+  - 仅十大股东，榜外存在理论盲区
+  - intent 为倾向判断而非定论（数据无"举牌目的"字段）
+  - 股本变动校正需 ≥3 个股东，小样本组合不做校正
+
+disclaimer: >-
+  Community Project，未经 QuantSkills 官方审核/认证/背书。仅供量化研究与教育示例，
+  不构成投资建议，不承诺收益。举牌事件不代表标的会涨；结果为报告期快照重建，
+  核对以官方权益变动报告书为准。任务清单点名的 get_stock_equity_placard 接口在
+  PandaData 最新文档（187 方法）中不存在，故由十大股东快照重建。
+  数据源、假设、参数、限制与风险边界见 SKILL.md 与 开发产物/references/。
