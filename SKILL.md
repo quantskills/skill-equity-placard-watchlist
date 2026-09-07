@@ -1,8 +1,8 @@
 ---
 name: skill-equity-placard-watchlist
-description: 举牌行为监控——侦测 A 股股东持股比例上穿 5%/10%/15%/20%/25%/30% 法定披露梯度的权益变动事件，含举牌梯度、意图倾向（财务 vs 战略）、6 个月锁定期、逼近举牌线观察名单。剔除通道账户与股本稀释造成的假举牌。BUILD 型 skill，可被复盘 agent 或事件驱动 Alpha 调用。
-tags: [quant, build, placard, shareholder, event-driven, corporate-action]
+description: 举牌行为监控：从十大股东快照重建 A 股股东持股上穿或跌破 5%/10%/15%/20%/25%/30% 法定披露梯度的事件，含意图倾向、锁定期与逼近举牌线观察名单，剔除通道账户与股本稀释造成的假信号。Use when the user asks who is placarding an A-share, at which tier, with what intent, or which holders are approaching the 5% line. Research and education only, not investment advice.
 license: GPL-3.0-only
+supported-runtimes: [cursor, claude-code, codex, hermes, openclaw]
 metadata:
   organization: QuantSkills
   organization_url: https://github.com/quantskills
@@ -10,9 +10,33 @@ metadata:
   repository_url: https://github.com/quantskills/skill-equity-placard-watchlist
   project_type: skill
   collection: corporate-action
+  maintainer: ZLHad
+  tags: [a-share, placard, shareholder, corporate-event, event-driven, pandadata]
+quantSkills:
+  schema_version: 2.1.0
+  organization: quantskills
+  organization_url: https://github.com/quantskills
+  repository: skill-equity-placard-watchlist
+  repository_url: https://github.com/quantskills/skill-equity-placard-watchlist
+  project_type: skill
   license: GPL-3.0-only
-  status: community-project
-  platforms: [claude-code, codex, cursor, hermes, openclaw]
+  maintainer: ZLHad
+  collection: corporate-action
+  catalog:
+    category: "03"
+    subcategory: 03.a-share-equity
+  workflow:
+    primary_stage: reporting
+    workflow_stages: [data-ingestion, modeling, reporting]
+  tags: [a-share, placard, shareholder, corporate-event, event-driven, pandadata]
+  platforms: [cursor, claude-code, codex, hermes, openclaw]
+  status: active
+  validation_level: listed
+  maintainer_type: community
+  summary_zh: "从十大股东快照重建 A 股举牌事件：5%–30% 披露梯度上穿或跌破、意图倾向、锁定期与逼近举牌线观察名单，剔除通道账户与股本稀释假信号。"
+  summary_en: "Rebuilds A-share shareholder placard events across the 5%-30% disclosure tiers from top-holder snapshots, with intent, lock-up period and near-threshold watchlist; research only."
+  interface:
+    mode: natural-language
 ---
 
 # 举牌行为监控（#17）

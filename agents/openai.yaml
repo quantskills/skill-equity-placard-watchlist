@@ -1,3 +1,6 @@
+name: skill-equity-placard-watchlist
+entrypoint: SKILL.md
+canonical_root: SKILL.md
 interface:
   display_name: "Equity Placard Watchlist"
   short_description: "Detect A-share 5%/10%/…/30% shareholder placard events from top-holder snapshots"

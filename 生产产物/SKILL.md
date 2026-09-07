@@ -17,11 +17,11 @@ tags: [quant, build, production, placard, shareholder]
 - 路径：`database.parquet`
 - 格式：Parquet（无 pyarrow 时开发脚本降级 CSV）
 - 更新频率：盘后 `maintain_daily()` 追加
-- 生成任务：`scripts/build.py`（`--mode scan` 全市场 / `--symbols` 指定票）
+- 生成任务：`开发产物/scripts/build.py`（`--mode scan` 全市场 / `--symbols` 指定票）
 
 ## 当前内容（随包样例，真实数据）
 
-- **溯源**：由 `python scripts/build.py --mode scan --start 20250101 --end 20260721 --save`
+- **溯源**：由 `python 开发产物/scripts/build.py --mode scan --start 20250101 --end 20260721 --save`
   从**真实 PandaData** 生成（非合成/非测试桩），可用同一命令重建。
 - 规模：**5734 行**，覆盖 **1345 只个股**，公告日范围 `20250107 ~ 20260716`。
 - 构成：`approaching 3655` / `placard_event 1781` / `channel_flow 297` / `placard_summary 1`
