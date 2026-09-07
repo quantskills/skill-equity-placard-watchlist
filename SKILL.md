@@ -12,6 +12,7 @@ metadata:
   collection: corporate-action
   license: GPL-3.0-only
   status: community-project
+  platforms: [claude-code, codex, cursor, hermes, openclaw]
 ---
 
 # 举牌行为监控（#17）

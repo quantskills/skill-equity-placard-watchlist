@@ -1,0 +1,4 @@
+interface:
+  display_name: "Equity Placard Watchlist"
+  short_description: "Detect A-share 5%/10%/…/30% shareholder placard events from top-holder snapshots"
+  default_prompt: "Use $skill-equity-placard-watchlist when the user asks who is placarding an A-share (crossing 5%/10%/15%/20%/25%/30% disclosure thresholds), at which tier, financial vs strategic intent, or which holders are approaching the 5% line. Read SKILL.md first and follow its data-scope rules."

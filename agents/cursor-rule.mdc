@@ -1,0 +1,41 @@
+---
+description: Use the Equity Placard Watchlist skill (skill-equity-placard-watchlist) when the user asks who is placarding an A-share (crossing 5%/10%/15%/20%/25%/30% disclosure thresholds), at which tier, financial vs strategic intent, or which holders are approaching the 5% line.
+alwaysApply: false
+---
+
+# Equity Placard Watchlist Skill (skill-equity-placard-watchlist)
+
+当用户想知道某只/全市场 A 股谁在举牌、举到第几档、是财务投资还是谋求控制权、哪些股东已逼近 5% 举牌线时，读取并遵循 [SKILL.md](../SKILL.md) 作为本 skill 的规范说明。
+详细调用声明见 `开发产物/SKILL.md`。
+
+Use this skill when the user asks who is placarding an A-share (crossing 5%/10%/15%/20%/25%/30% disclosure thresholds), at which tier, financial vs strategic intent, or which holders are approaching the 5% line. Read and follow [SKILL.md](../SKILL.md) as the canonical
+instructions; the detailed agent-facing declaration lives in `开发产物/SKILL.md`.
+
+## Workflow
+
+1. Read `SKILL.md`, then `开发产物/SKILL.md`.
+2. Read the references before changing any data logic:
+- `开发产物/references/api_guide.md`
+- `开发产物/references/quality_evidence.md`
+3. Run the entrypoints from the repository root:
+
+```bash
+python 开发产物/scripts/build.py --mode scan --start 20250101 --end 20260721 --save --html board.html
+python 开发产物/scripts/build.py --symbols 601005.SH 002011.SZ --start 20240101 --end 20260721
+python 开发产物/scripts/test.py
+```
+
+## Hard rules / 硬性口径
+
+1. 只取 `stock_type='total'` 行计算持股比例；`flow` 行是流通股本口径，会把举牌梯度整个算错
+2. 股本变动导致的被动稀释不是减持：必须先按 (票, 报告期) 推断股本变动系数，只认交易造成的越线
+3. 结论口径是报告期快照重建、非实时播报；一致行动人无法合并；输出中保留这些限制
+
+1. Use only `stock_type='total'` rows for holding ratios; `flow` rows are on float-share basis and corrupt the tier ladder
+2. Passive dilution from share issuance is not a sell-down: infer the share-change factor per (symbol, report period) first and only count trade-driven crossings
+3. Results are report-period snapshot reconstructions, not real-time alerts; acting-in-concert parties cannot be merged; keep these limits in the output
+
+## Boundaries
+
+- Data source is PandaData via `panda_data`; credentials come only from environment variables or `~/.pandadata/pandadata.env`. Never hard-code or echo credentials.
+- Community Project, not reviewed, certified, or endorsed by QuantSkills. Research and educational use only; no investment advice, no return promises.

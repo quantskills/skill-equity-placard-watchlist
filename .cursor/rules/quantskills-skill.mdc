@@ -1,0 +1,7 @@
+---
+description: Load the Equity Placard Watchlist skill (skill-equity-placard-watchlist) when the user asks who is placarding an A-share (crossing 5%/10%/15%/20%/25%/30% disclosure thresholds), at which tier, financial vs strategic intent, or which holders are approaching the 5% line.
+alwaysApply: false
+---
+
+Read and follow [SKILL.md](SKILL.md) as the canonical skill instructions.
+The full Cursor rule with workflow and hard rules is [agents/cursor-rule.mdc](agents/cursor-rule.mdc).

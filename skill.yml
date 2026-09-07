@@ -40,8 +40,10 @@ entrypoints:
 
 runtimes:
   claude-code: { declaration: 开发产物/SKILL.md, invoke: cli }
-  codex:       { declaration: SKILL.md, invoke: cli }
-  cursor:      { declaration: SKILL.md, invoke: cli }
+  codex:       { declaration: SKILL.md, invoke: cli, adapter: agents/openai.yaml }
+  cursor:      { declaration: SKILL.md, invoke: cli, adapter: .cursor/rules/quantskills-skill.mdc, rule: agents/cursor-rule.mdc }
+  hermes:      { declaration: SKILL.md, invoke: cli, adapter: agents/portable-loader.md }
+  openclaw:    { declaration: SKILL.md, invoke: cli, adapter: agents/portable-loader.md }
 
 known_limitations:
   - 报告期快照口径，报告期之间发生并回撤的举牌看不到，非实时播报

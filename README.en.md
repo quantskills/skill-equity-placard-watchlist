@@ -196,3 +196,13 @@ Real cases found in a live run:
 > not investment advice, no return promises.** A placard does not imply the stock will rise.
 
 License: **GPL-3.0-only**
+
+## Runtime entrypoints
+
+Per the QuantSkills community rules this repository ships entrypoints for multiple agent runtimes; the root [SKILL.md](SKILL.md) is the canonical declaration:
+
+| Runtime | Entrypoint |
+|---|---|
+| Claude Code / Codex | root `SKILL.md` (Codex interface metadata in [agents/openai.yaml](agents/openai.yaml)) |
+| Cursor | [.cursor/rules/quantskills-skill.mdc](.cursor/rules/quantskills-skill.mdc); full rule in [agents/cursor-rule.mdc](agents/cursor-rule.mdc) |
+| Hermes / OpenClaw | [agents/portable-loader.md](agents/portable-loader.md) (portable loader prompt) |
