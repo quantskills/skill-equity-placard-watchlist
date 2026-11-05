@@ -23,8 +23,8 @@ readme:
   zh: README.md
   en: README.en.md
 
-data_source: PandaData (panda_data>=0.0.9) — get_top_holders 十大股东快照
-dependencies: [panda_data>=0.0.9, pandas, pyarrow]
+data_source: PandaData (panda_data==1.0.6) — get_top_holders 十大股东快照
+dependencies: [panda_data==1.0.6, pandas, pyarrow]
 
 entrypoints:
   cli: python 开发产物/scripts/build.py --mode scan
