@@ -99,3 +99,7 @@ python 开发产物/scripts/test.py
 4. **意图为倾向判断**——数据无"举牌目的"字段，`intent` 仅依据主体性质/持股高度/增持力度给先验，非定论。
 
 **Community Project，未经 QuantSkills 官方审核/认证/背书。仅量化研究与教育示例，不构成投资建议，不承诺收益。**
+
+## Pandadata compatibility
+
+[Pandadata 1.0.6 compatibility](references/pandadata-compatibility.md) — exact SDK baseline, validation scope, and shared guidance for all supported agent runtimes.

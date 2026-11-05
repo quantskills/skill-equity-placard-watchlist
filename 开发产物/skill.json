@@ -5,7 +5,7 @@
   "type": "build",
   "category": "monitor+event",
   "description": "举牌行为监控：从十大股东快照重建持股比例上穿 5%/10%/15%/20%/25%/30% 的权益变动事件，含举牌梯度、意图倾向、6 个月锁定期与逼近观察名单；剔除通道账户与股本稀释造成的假举牌。可被复盘 agent 或事件驱动 Alpha 调用。",
-  "data_source": "PandaData (panda_data>=0.0.9) — get_top_holders（stock_type=total 口径）",
+  "data_source": "PandaData (panda_data==1.0.6) — get_top_holders（stock_type=total 口径）",
   "spec_note": "任务清单点名的 get_stock_equity_placard 在 PandaData 最新接口文档（187 方法）中不存在，故由十大股东快照重建；由此产生「报告期快照口径、非实时播报」的根本限制。",
   "entrypoints": {
     "run": "scripts/build.py:run",
